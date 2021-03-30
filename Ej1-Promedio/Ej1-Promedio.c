@@ -21,9 +21,12 @@ int main ()
     printf("Prog. para calcular el promedio de N numeros enteros ingresados por teclado \n");
     printf("----------------------------------------------------------------------------- \n");
 
+    IngresaNumeros( Numeros );                   //Ingreso de numeros
 
-    IngresaNumeros( Numeros );
+    CalculoPromedio( Numeros, &Promedio );       //Calculo del promedio de los numeros ingresados
 
+    printf("----------------------------------------------------------------------------- \n");
+    printf("El promedio de los numeros ingresados es: %f", Promedio);       //Muestreo del resultado
 
 }
 
@@ -31,16 +34,35 @@ void IngresaNumeros( int Numeros[] )
 {
     int i = 0;                              //Contador
 
-    do
+    while(1)
     {
-        printf("Ingrese el %d° numero: ", (i+1));
+        printf("Ingrese el %d° numero: ", (i+1));           //Ingreso del i-esimo numero
         scanf("%d", &Numeros[i]);
-        i++;
+
+        if( Numeros[i] == NumeroFin )                       //En caso de que el numero ingresado sea 9999
+        {                                                   //Sale del while
+            break;
+        }
+        
+        i++;                                                //Incrementa el contador, o la posicion del arreglo
     }
-    while( Numeros[i-1] =! NumeroFin || i < LimiteNumeros );
 }
 
 void CalculoPromedio( int Numeros[], float *Promedio )
 {
+    int i = 0;              //Contador
+
+    while(1)
+    {
+        *Promedio = *Promedio + Numeros[i];                   //Suma de los numeros ingresados
+        i++;                                                  //Incremento del contador y la posicion del arreglo
+
+        if( Numeros[i] == NumeroFin )                         //En caso de que el numero ingresado sea 9999
+        {                                                     //Sale del while
+            break;
+        }
+    }
+
+    *Promedio = (*Promedio / i);                              //DDivide la suma por la cantidad de numeros ingresados
 
 }
