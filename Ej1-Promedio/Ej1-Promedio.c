@@ -34,35 +34,37 @@ void IngresaNumeros( int Numeros[] )
 {
     int i = 0;                              //Contador
 
-    while(1)
+    do
     {
-        printf("Ingrese el %d° numero: ", (i+1));           //Ingreso del i-esimo numero
+        printf("DEDE INGRESAR ALMENOS 1 NUMERO \n");
+        printf("Ingrese el %d%c numero: ", (i+1), 248);        //Ingreso del i-esimo numero
         scanf("%d", &Numeros[i]);
 
-        if( Numeros[i] == NumeroFin )                       //En caso de que el numero ingresado sea 9999
-        {                                                   //Sale del while
-            break;
-        }
-        
-        i++;                                                //Incrementa el contador, o la posicion del arreglo
-    }
+    }while( Numeros[i] == 9999 );                               //El ciclo se produce mientras no ingrese ningun numero
+    
+    i++;                                                        //Incremento el contador y la posicion del arreglo
+    
+    do
+    {
+        printf("Ingrese el %d%c numero: ", (i+1), 248);        //Ingreso del i-esimo numero
+        scanf("%d", &Numeros[i]);
+        i++;                                                   //Incrementa el contador, o la posicion del arreglo
+
+    }while( Numeros[i-1] != NumeroFin );                       //Se produce el ciclo hasta que se ingrese el 9999
+
 }
 
 void CalculoPromedio( int Numeros[], float *Promedio )
 {
     int i = 0;              //Contador
 
-    while(1)
+    do
     {
-        *Promedio = *Promedio + Numeros[i];                   //Suma de los numeros ingresados
-        i++;                                                  //Incremento del contador y la posicion del arreglo
+        *Promedio = *Promedio + Numeros[i];         //Suma de los numeros ingresados
+        i++;                                        //Incremento del contador y la posicion del arreglo
 
-        if( Numeros[i] == NumeroFin )                         //En caso de que el numero ingresado sea 9999
-        {                                                     //Sale del while
-            break;
-        }
-    }
+    }while( Numeros[i] != NumeroFin  );             //Se produce el ciclo hasta que el numero ingresado
 
-    *Promedio = (*Promedio / i);                              //DDivide la suma por la cantidad de numeros ingresados
+    *Promedio = (*Promedio / i);                    //Divide la suma por la cantidad de numeros ingresados
 
 }
