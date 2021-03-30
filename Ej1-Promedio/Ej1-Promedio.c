@@ -25,14 +25,15 @@ int main ()
     IngresaNumeros( Numeros, &CantNumeros );
 }
 
-IngresaNumeros( Numeros[], *CantNumeros )
+void IngresaNumeros( int Numeros[], int *CantNumeros )
 {
     int i = 0;                              //Contador
 
     do
     {
+        printf("Ingrese el %d° numero: ", (i+1));
         scanf("%d", &Numeros[i]);
         i++;
     }
-    while( Numero[i] =! NumeroFin || i < *CantNumeros );
+    while( Numeros[i] =! NumeroFin || i < *CantNumeros );
 }
