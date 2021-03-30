@@ -7,7 +7,7 @@ ingresado los números deseados debe ingresar el valor 9999, para así proceder 
 #define LimiteNumeros 200
 #define NumeroFin 9999
 
-void IngresaNumeros( int Numeros[], int *CantNumeros );
+void IngresaNumeros( int Numeros[] );
 
 void CalculoPromedio( int Numeros[], float *Promedio );
 
@@ -21,15 +21,13 @@ int main ()
     printf("Prog. para calcular el promedio de N numeros enteros ingresados por teclado \n");
     printf("----------------------------------------------------------------------------- \n");
 
-    printf("Cuantos numeros desea ingresar: ");
-    scanf("%d", &CantNumeros);
 
-    IngresaNumeros( Numeros, &CantNumeros );
+    IngresaNumeros( Numeros );
 
 
 }
 
-void IngresaNumeros( int Numeros[], int *CantNumeros )
+void IngresaNumeros( int Numeros[] )
 {
     int i = 0;                              //Contador
 
@@ -39,7 +37,7 @@ void IngresaNumeros( int Numeros[], int *CantNumeros )
         scanf("%d", &Numeros[i]);
         i++;
     }
-    while( Numeros[i] =! NumeroFin || i < LimiteNumeros );
+    while( Numeros[i--] != NumeroFin || i < LimiteNumeros );
 }
 
 void CalculoPromedio( int Numeros[], float *Promedio )
