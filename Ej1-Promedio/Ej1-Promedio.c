@@ -9,6 +9,8 @@ ingresado los números deseados debe ingresar el valor 9999, para así proceder 
 
 void IngresaNumeros( int Numeros[], int *CantNumeros );
 
+void CalculoPromedio( int Numeros[], float *Promedio );
+
 int main ()
 {
     int Numeros[LimiteNumeros];             //Guarda los numeros ingresados
@@ -23,6 +25,8 @@ int main ()
     scanf("%d", &CantNumeros);
 
     IngresaNumeros( Numeros, &CantNumeros );
+
+
 }
 
 void IngresaNumeros( int Numeros[], int *CantNumeros )
@@ -35,5 +39,10 @@ void IngresaNumeros( int Numeros[], int *CantNumeros )
         scanf("%d", &Numeros[i]);
         i++;
     }
-    while( Numeros[i] =! NumeroFin || i < *CantNumeros );
+    while( Numeros[i] =! NumeroFin || i < LimiteNumeros );
+}
+
+void CalculoPromedio( int Numeros[], float *Promedio )
+{
+
 }
