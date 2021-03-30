@@ -35,14 +35,9 @@ void IngresaNumeros( int Numeros[] )
     {
         printf("Ingrese el %d° numero: ", (i+1));
         scanf("%d", &Numeros[i]);
-
-        if( Numeros[i] == NumeroFin )
-        {
-            break;
-        }
-        
         i++;
     }
+    while( Numeros[i-1] != NumeroFin || i < LimiteNumeros );
 }
 
 void CalculoPromedio( int Numeros[], float *Promedio )
