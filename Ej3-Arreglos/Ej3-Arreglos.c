@@ -65,7 +65,7 @@ void SeptimoElemento(void)
 
     printf("Ingrese una palabra sin espacios: ");
     scanf("%s", &f);
-    printf("----------------------------------------------------- \n");
+    printf("---------------------------------------------------------------- \n");
 
     printf("El 7%c elemento del arreglo es el caracter: %c", 248, f[6]);
 }
@@ -107,7 +107,7 @@ void Suma100ElementosFlotantes(void)
 
     for( i = 0; i < 100; i++ )          //Ingreso de numeros flotantes random al arreglo
     {
-        c[i] = (rand() / rand())*1.5278;       //Numero random
+        c[i] = rand()/5135.5278;       //Numero random
         Suma = Suma + c[i];                 //Suma total
     }
     printf("La suma de los 100 elementos es: %.4f: ", Suma);
