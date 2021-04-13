@@ -3,6 +3,8 @@ Utilizar 2 pulsadores para controlar el sentido de encendido. Por ejemplo:
 Pulsador A: led1 > led2 > led3 > led1 > …
 Pulsador B: led1 > led3 > led2 > led1 > … */
 
+#include <Arduino.h>
+
 #define Puls_A 11         //Pines Pulsadores
 #define Puls_B 12
 
