@@ -58,7 +58,6 @@ void SecuenciaLed( bool *Sentido )
       digitalWrite(Leds[i], HIGH);          //Enciende el led, espera, y lo apaga
       delay(Tiempo);
       digitalWrite(Leds[i], LOW);
-      
 
       break;
 
