@@ -5,74 +5,71 @@ Pulsador B: led1 > led3 > led2 > led1 > … */
 
 #include <Arduino.h>
 
-#define Puls_A 11         //Pines Pulsadores
+#define Puls_A 11                   //Pines Pulsadores
 #define Puls_B 12
 
-#define Led_1 6           //Pines Leds
-#define Led_2 7
-#define Led_3 8
+#define NumLeds 3                   //Cantidad de leds
+int Leds[NumLeds] = { 8, 7, 6 };    //Pines Leds
 
-int LedMode = 0;          //Contador para secuencia
+#define Tiempo 500                 //Tiempo Led encendido
 
-void SecuenciaLed( int *LedMode );          //Funcion para prender leds
+bool Sentido = 0;          //Contador para secuencia      0 = Incremento   1 = Decremento
+int i = 0;                 //Contador global para la funcion de secuencia
+
+void SecuenciaLed( bool *Sentido );          //Funcion para prender leds
 
 void setup() {
   // put your setup code here, to run once:
 
-  pinMode( Puls_A, INPUT );                 //Pulsadores como entradas
-  pinMode( Puls_B, INPUT );
-  pinMode( Led_1, OUTPUT );                 //Leds como salidas
-  pinMode( Led_2, OUTPUT );
-  pinMode( Led_3, OUTPUT );
+  pinMode( Puls_A, INPUT_PULLUP );          //Pulsadores como entradas
+  pinMode( Puls_B, INPUT_PULLUP );          //Pullup, activacion de resistencias internas
+  pinMode( Leds[0], OUTPUT );                 //Leds como salidas
+  pinMode( Leds[1], OUTPUT );
+  pinMode( Leds[2], OUTPUT );
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   
-  if( digitalRead(Puls_A) == 1 )            //Pulsador secuencia ascendente
+  if((digitalRead(Puls_A) == 0) && (Sentido == 1))            //Pulsador secuencia ascendente
   {
     delay(200);                             //Delay por rebote
-    LedMode++;
-    if( LedMode == 3 ) LedMode = 0;         //Retorno por ascenso
+    Sentido = !Sentido;                     //Se invierte el sentido
   }
 
-  if( digitalRead(Puls_B) == 1 )            //Pulsador secuencia descendente
+  if((digitalRead(Puls_B) == 0) && (Sentido == 0))            //Pulsador secuencia descendente
   {
     delay(200);                             //Delay por rebote
-    LedMode--;
-    if( LedMode == -1 ) LedMode = 2;        //Retorno por descenso
+    Sentido = !Sentido;                     //Se invierte el sentido
   }
-  
-  SecuenciaLed(&LedMode);                   //Ejecucion de secuencia
+
+  SecuenciaLed(&Sentido);                   //Ejecucion de secuencia
   
 }
 
-void SecuenciaLed( int *LedMode )
+void SecuenciaLed( bool *Sentido )
 {
-  switch(*LedMode)
+  switch(*Sentido)                          //Dependiendo del sentido
   {
-    case 0:                                 //Prende solo el primer led
-      digitalWrite(Led_1, LOW);
-      digitalWrite(Led_2, LOW);
-      digitalWrite(Led_3, HIGH);
+    case 0:                                 //Sentido secuencial Ascendente
+      
+      i++;                                  //Incremento el contador
+      if( i == NumLeds ) i = 0;             //Verifica que no se sobrepase
+      digitalWrite(Leds[i], HIGH);          //Enciende el led, espera, y lo apaga
+      delay(Tiempo);
+      digitalWrite(Leds[i], LOW);
+      
+
       break;
 
-     case 1:                                 //Prende solo el segundo led
-      digitalWrite(Led_1, LOW);
-      digitalWrite(Led_2, HIGH);
-      digitalWrite(Led_3, LOW);
-      break;
+     case 1:                                 //Sentido secuencial Descendente
+      
+      digitalWrite(Leds[i], HIGH);          //Enciende el led, espera, y lo apaga
+      delay(Tiempo);
+      digitalWrite(Leds[i], LOW);
+      if( i == 0 ) i = NumLeds;             //Verifica que no se sobrepase
+      i--;                                  //Decrementa el contador
 
-     case 2:                                 //Prende solo el tercer led
-      digitalWrite(Led_1, HIGH);
-      digitalWrite(Led_2, LOW);
-      digitalWrite(Led_3, LOW);
-      break;
-    
-     default:                                 //Apaga todos los leds en otro caso
-      digitalWrite(Led_1, LOW);
-      digitalWrite(Led_2, LOW);
-      digitalWrite(Led_3, LOW);
       break;
   }
 }
