@@ -6,7 +6,7 @@ struct Sensores
 {
     char TipoSensor;
     int ValorSensor;
-    unsigned long TiempoTrans;
+    long TiempoTrans;
 } StVar;
 
 int main()
