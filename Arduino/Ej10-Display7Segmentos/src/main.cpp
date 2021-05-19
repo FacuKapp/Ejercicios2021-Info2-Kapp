@@ -18,7 +18,7 @@ void loop() {
 
   for(i = 0; i <= 8; i++)
   {
-    PORTD = PORTD | (1<<i);
-    delay(TIEMPO);
+    PORTD = PORTD | (1<<i);           //Mueve el bit en 1 por cada vuelta del for
+    delay(TIEMPO);                    //Espera un tiempo
   }
 }
